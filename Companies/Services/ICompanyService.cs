@@ -1,14 +1,12 @@
 ﻿using Companies.Lib;
 using Companies.Models;
 using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Companies.Services
 {
-   public  interface ICompanyService
+    public  interface ICompanyService
     {
         Task<IEnumerable<Company>> GetAllCompanyAsync();
         Task<IEnumerable<Company>> GetByFilterAsync(string filterjson);

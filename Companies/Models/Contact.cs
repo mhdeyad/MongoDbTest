@@ -15,10 +15,8 @@ namespace Companies.Models
 
         [BsonElement("Name")]
         public string Name { get; set; }
-        //[BsonIgnore]
-        //public FieldType[] Properties { get; set; }
-
-        public List<Company> Companeis { get; set; }
+        [BsonElement("Companies")]
+        public List<ObjectId> Companies { get; set; }
      
         [BsonExtraElements]
         public BsonDocument Properties { get; set; }
