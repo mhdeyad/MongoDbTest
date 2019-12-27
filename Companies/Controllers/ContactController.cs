@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Companies.Lib;
 using Companies.Models;
@@ -14,104 +15,123 @@ namespace Companies.Controllers
     [ApiController]
     public class ContactController : Controller
     {
-        private ICompanyService _CompanyService;
+        private IContactService _ContactService;
 
-        public ContactController(ICompanyService companyService)
+        public ContactController(IContactService contactService)
         {
-
-
-            _CompanyService = companyService;
+            _ContactService = contactService;
         }
 
-
-
-        // GET: api/Contact
+        /// <summary>
+        /// Get all Contact data
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var contacts = await _CompanyService.GetAllContact();
-         
-            return Json(contacts);
+            try
+            {
+                var contacts = await _ContactService.GetAllContactAsync();
+                return Json(contacts);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
-        // GET: api/Contact/5
+        /// <summary>
+        /// Get contact data by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
-
-            var contact = await _CompanyService.GetContact(id);
-
-            return Json(contact);
+            try
+            {
+                var contact = await _ContactService.GetContactAsync(id);
+                return Json(contact);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        // POST: api/Contact
+        /// <summary>
+        /// add one contact data to contact collection
+        /// </summary>
+        /// <param name="contact"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Contact contact)
         {
             try
             {
-
-                await _CompanyService.AddContact(contact);
-
+                await _ContactService.AddContactAsync(contact);
                 return Ok(Json(contact));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
 
-        // PUT: api/Contact/5
+        /// <summary>
+        /// update one contact data by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="contact"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody] Contact contact)
         {
             try
             {
-
-                var result = await _CompanyService.UpdateContact(id, contact);
-
+                var result = await _ContactService.UpdateContactASync(id, contact);
                 return Ok(result);
-
             }
             catch (Exception ex)
             {
-
-                return Ok(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
+        /// <summary>
+        /// Add one column  with value to contact document by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
         [HttpPost("AddColumn{id}")]
         public async Task<IActionResult> AddColumn(string id, [FromForm] FieldType column)
         {
             try
             {
-
-
-                await _CompanyService.AddColumnToContactCollection(id, column);
-
-
+                await _ContactService.AddColumnToContactCollectionAsync(id, column);
                 return Ok();
-
             }
             catch (Exception ex)
             {
-
-                return Ok(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
-        // DELETE: api/ApiWithActions/5
+        /// <summary>
+        /// delete on document from contact collection by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
             try
             {
-                _CompanyService.RemoveContact(id);
-
+                _ContactService.RemoveContactAsync(id);
                 return Ok();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return StatusCode(500, ex.Message);
             }
 
         }

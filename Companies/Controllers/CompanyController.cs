@@ -18,112 +18,148 @@ namespace Companeis.Controllers
     [ApiController]
     public class CompanyController : Controller
     {
-      
-    
+
+
         private ICompanyService _CompanyService;
 
         public CompanyController(ICompanyService companyService)
         {
-          
-          
             _CompanyService = companyService;
         }
-        // GET: api/Company
+       /// <summary>
+       /// Get all Company data
+       /// </summary>
+       /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var companies = await _CompanyService.GetAllCompany();
-           // List<Company> companies = companycollection.AsQueryable<Company>().ToList();
-            return Json(companies);
+            try
+            {
+                var companies = await _CompanyService.GetAllCompanyAsync();
+                return Json(companies);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
         }
-        [HttpGet("GetByFilter")]
-        public async Task<IActionResult> GetByFilter(string filter)
-        {
-            var companies = await _CompanyService.GetByFilter(filter);
-            
-            return Json(companies);
-        }
-        // GET: api/Company/5
+ 
+      /// <summary>
+      /// Get one Company data by Id
+      /// </summary>
+      /// <param name="id"></param>
+      /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
-          
-            var company = await _CompanyService.GetCompany(id);
-        
-            return Json(company);
-        }
+            try
+            {
+                var company = await _CompanyService.GetCompanyAsync(id);
+                return Json(company);
 
-        // POST: api/Company
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        /// <summary>
+        /// Add one company
+        /// </summary>
+        /// <param name="company"></param>
+        /// <returns></returns>
+      
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Company company)
         {
             try
             {
-              
-              await   _CompanyService.AddCompany(company);
-               
-              return Ok(Json(company));
+                await _CompanyService.AddCompanyAsync(company);
+                return Ok(Json(company));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
+        /// <summary>
+        /// Update One company
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="company"></param>
+        /// <returns></returns>
 
-        // PUT: api/Company/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody] Company company)
         {
             try
             {
-
-                var result = await _CompanyService.UpdateCompany(id, company);
-              
+                var result = await _CompanyService.UpdateCompanyAsync(id, company);
                 return Ok(result);
-
             }
             catch (Exception ex)
             {
-
-                return Ok(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
+        /// <summary>
+        /// Add one column to company document
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
         [HttpPost("AddColumn{id}")]
         public async Task<IActionResult> AddColumn(string id, [FromForm] FieldType column)
         {
             try
             {
-
-
-              await  _CompanyService.AddColumnToCompanyCollection(id, column);
-               
-
-              return Ok();
-
+                await _CompanyService.AddColumnToCompanyCollectionAsync(id, column);
+                return Ok();
             }
             catch (Exception ex)
             {
-
-                return Ok(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
-        // DELETE: api/ApiWithActions/5
+        /// <summary>
+        /// delete company by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
             try
             {
-                _CompanyService.RemoveCompany(id);
-              
+                _CompanyService.RemoveCompanyAsync(id);
                 return Ok();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return StatusCode(500, ex.Message);
             }
 
+        }
+        /// <summary>
+        /// filter company data by pass json text
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        [HttpGet("GetByFilter")]
+        public async Task<IActionResult> GetByFilter(string filter)
+        {
+            try
+            {
+                var companies = await _CompanyService.GetByFilterAsync(filter);
+                return Json(companies);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

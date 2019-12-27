@@ -10,25 +10,19 @@ namespace Companies.Services
 {
    public  interface ICompanyService
     {
-        Task<IEnumerable<Company>> GetAllCompany();
-        Task<IEnumerable<Company>> GetByFilter(string filterjson);
-        Task<Company> GetCompany(string CompanyId);
-        Task<Company> AddCompany( Company company);
-        Task<Company> UpdateCompany(string id ,Company company);
-        Task<DeleteResult> RemoveCompany(string Id);
-        Task<DeleteResult> RemoveAll();
+        Task<IEnumerable<Company>> GetAllCompanyAsync();
+        Task<IEnumerable<Company>> GetByFilterAsync(string filterjson);
+        Task<Company> GetCompanyAsync(string CompanyId);
+        Task<Company> AddCompanyAsync( Company company);
+        Task<Company> UpdateCompanyAsync(string id ,Company company);
+        Task<DeleteResult> RemoveCompanyAsync(string Id);
+        Task<DeleteResult> RemoveAllAsync();
 
-        Task AddColumnToCompanyCollection(string id, FieldType column);
+        Task AddColumnToCompanyCollectionAsync(string id, FieldType column);
 
 
 
-        Task AddColumnToContactCollection(string id, FieldType column);
-
-        Task<IEnumerable<Contact>> GetAllContact();
-        Task<Contact> GetContact(string Id);
-        Task<Contact> AddContact(Contact contact);
-        Task<Contact> UpdateContact(string id, Contact contact);
-        Task<DeleteResult> RemoveContact(string Id);
+      
 
     }
 }
