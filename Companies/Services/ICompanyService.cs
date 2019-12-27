@@ -16,7 +16,7 @@ namespace Companies.Services
         Task<DeleteResult> RemoveCompanyAsync(string Id);
         Task<DeleteResult> RemoveAllAsync();
 
-        Task AddColumnToCompanyCollectionAsync(string id, FieldType column);
+        Task AddPropertyToCompanyDocumentAsync(string id, PropertyType column);
 
 
 

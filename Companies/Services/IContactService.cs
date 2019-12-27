@@ -13,6 +13,6 @@ namespace Companies.Services
         Task<Contact> AddContactAsync(Contact contact);
         Task<Contact> UpdateContactASync(string id, Contact contact);
         Task<DeleteResult> RemoveContactAsync(string Id);
-        Task AddColumnToContactCollectionAsync(string id, FieldType column);
+        Task AddPropertyToContactDocumentAsync(string id, PropertyType column);
     }
 }

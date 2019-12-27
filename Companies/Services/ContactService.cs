@@ -20,16 +20,16 @@ namespace Companies.Services
             dbcontext = new MongoDbContext(config);
         }
 
-        public async Task AddColumnToContactCollectionAsync(string id, FieldType column)
+        public async Task AddPropertyToContactDocumentAsync(string id, PropertyType column)
         {
 
             Contact contact = await GetContactAsync(id);
             var col = new BsonDocument();
-            if (column.DataType == FieldDataType.stringtype)
+            if (column.DataType == PropertyDataType.stringtype)
                 col = new BsonDocument(column.Name, column.Value);
-            else if (column.DataType == FieldDataType.Intype)
+            else if (column.DataType == PropertyDataType.Intype)
                 col = new BsonDocument(column.Name, Convert.ToInt32(column.Value));
-            else if (column.DataType == FieldDataType.Datetype)
+            else if (column.DataType == PropertyDataType.Datetype)
                 col = new BsonDocument(column.Name, Convert.ToDateTime(column.Value));
             if (contact.Properties == null)
                 contact.Properties = col;

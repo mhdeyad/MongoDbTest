@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Companies
 {
@@ -34,7 +35,11 @@ namespace Companies
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                var xmlPath = System.AppDomain.CurrentDomain.BaseDirectory + @"Companies.xml";
+                c.IncludeXmlComments(xmlPath);
+                c.DescribeAllEnumsAsStrings();
             });
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

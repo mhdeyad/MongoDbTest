@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Companies.Models
 {
+    /// <summary>
+    /// An Entity that contain company data
+    /// </summary>
     public class Company
     {
         [BsonId]

@@ -5,6 +5,10 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\MyProjects\Companies\CompanySolution\Companies\Companies.xml</DocumentationFile>
+  </PropertyGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Json.Net" Version="1.0.18" />

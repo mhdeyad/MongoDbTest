@@ -94,17 +94,17 @@ namespace Companies.Controllers
             }
         }
         /// <summary>
-        /// Add one column  with value to contact document by id
+        /// Add one property  with value to contact document by id
         /// </summary>
         /// <param name="id"></param>
         /// <param name="column"></param>
         /// <returns></returns>
-        [HttpPost("AddColumn{id}")]
-        public async Task<IActionResult> AddColumn(string id, [FromForm] FieldType column)
+        [HttpPost("AddProperty{id}")]
+        public async Task<IActionResult> AddProperty(string id, [FromForm] PropertyType column)
         {
             try
             {
-                await _ContactService.AddColumnToContactCollectionAsync(id, column);
+                await _ContactService.AddPropertyToContactDocumentAsync(id, column);
                 return Ok();
             }
             catch (Exception ex)

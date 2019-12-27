@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Companies.Models
 {
+    /// <summary>
+    /// An Entity that contain contact data
+    /// </summary>
     public class Contact
     {
         [BsonId]

@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Companies</name>
+    </assembly>
+    <members>
+        <member name="M:Companies.Controllers.ContactController.Get">
+            <summary>
+            Get all Contact data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Companies.Controllers.ContactController.Get(System.String)">
+            <summary>
+            Get contact data by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Companies.Controllers.ContactController.Post(Companies.Models.Contact)">
+            <summary>
+            add one contact data to contact collection
+            </summary>
+            <param name="contact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Companies.Controllers.ContactController.Put(System.String,Companies.Models.Contact)">
+            <summary>
+            update one contact data by id
+            </summary>
+            <param name="id"></param>
+            <param name="contact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Companies.Controllers.ContactController.AddProperty(System.String,Companies.Lib.PropertyType)">
+            <summary>
+            Add one property  with value to contact document by id
+            </summary>
+            <param name="id"></param>
+            <param name="column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Companies.Controllers.ContactController.Delete(System.String)">
+            <summary>
+            delete on document from contact collection by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Companies.Models.Company">
+            <summary>
+            An Entity that contain company data
+            </summary>
+        </member>
+        <member name="T:Companies.Models.Contact">
+            <summary>
+            An Entity that contain contact data
+            </summary>
+        </member>
+        <member name="M:Companeis.Controllers.CompanyController.Get">
+            <summary>
+            Get all Company data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Companeis.Controllers.CompanyController.Get(System.String)">
+            <summary>
+            Get one Company data by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Companeis.Controllers.CompanyController.Post(Companies.Models.Company)">
+            <summary>
+            Add one company
+            </summary>
+            <param name="company"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Companeis.Controllers.CompanyController.Put(System.String,Companies.Models.Company)">
+            <summary>
+            Update One company
+            </summary>
+            <param name="id"></param>
+            <param name="company"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Companeis.Controllers.CompanyController.AddProperty(System.String,Companies.Lib.PropertyType)">
+            <summary>
+            Add one property to company document
+            </summary>
+            <param name="id"></param>
+            <param name="column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Companeis.Controllers.CompanyController.Delete(System.String)">
+            <summary>
+            delete company by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Companeis.Controllers.CompanyController.GetByFilter(System.String)">
+            <summary>
+            filter company data by pass json text
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

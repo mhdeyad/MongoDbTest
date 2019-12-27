@@ -24,15 +24,15 @@ namespace Companies.Services
         {
             dbcontext = new MongoDbContext(config);
         }
-        public async Task AddColumnToCompanyCollectionAsync(string id, FieldType column)
+        public async Task AddPropertyToCompanyDocumentAsync(string id, PropertyType column)
         {
             Company company = await GetCompanyAsync(id);
             var col = new BsonDocument();
-            if (column.DataType == FieldDataType.stringtype)
+            if (column.DataType == PropertyDataType.stringtype)
                 col = new BsonDocument(column.Name, column.Value);
-            else if (column.DataType == FieldDataType.Intype)
+            else if (column.DataType == PropertyDataType.Intype)
                 col = new BsonDocument(column.Name, Convert.ToInt32(column.Value));
-            else if (column.DataType == FieldDataType.Datetype)
+            else if (column.DataType == PropertyDataType.Datetype)
                 col = new BsonDocument(column.Name, Convert.ToDateTime(column.Value));
             if (company.Properties == null)
                 company.Properties = col;
